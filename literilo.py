@@ -70,7 +70,13 @@ def on_press(key) -> None:
     ## Aldonu al la listo de tajpitaj literoj
     if tajpitaj_literoj == None:
         return
-    tajpitaj_literoj += litero
+    try:
+        tajpitaj_literoj += litero
+    except TypeError:
+        # This error occurs when we hit Shift+Tab for instance
+        # If it occurs, we do not want to crash, but simply continue
+        # the execution
+        pass
 
     # Akiru eblan Esperantan karakteron por skribi
     esperanta_teksto = _ricevu_mapaĵo()
